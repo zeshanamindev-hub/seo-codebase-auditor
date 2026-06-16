@@ -1,0 +1,21 @@
+{
+  "name": "seo-codebase-auditor",
+  "description": "Generate honest codebase-only SEO audit reports for Next.js, Shopify, WordPress, and modern web projects.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Revnix"
+  },
+  "keywords": [
+    "seo",
+    "audit",
+    "codebase",
+    "nextjs",
+    "shopify",
+    "wordpress",
+    "technical-seo",
+    "schema",
+    "metadata",
+    "ai-visibility"
+  ]
+}
