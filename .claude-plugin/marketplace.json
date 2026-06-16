@@ -1,7 +1,7 @@
 {
   "name": "seo-codebase-auditor",
   "owner": {
-    "name": "Revnix"
+    "name": "Zeshan Amin"
   },
   "metadata": {
     "description": "Marketplace for the SEO Codebase Auditor plugin.",
@@ -15,7 +15,7 @@
       "version": "0.1.0",
       "license": "MIT",
       "author": {
-        "name": "Revnix"
+        "name": "Zeshan AMin"
       },
       "keywords": [
         "seo",

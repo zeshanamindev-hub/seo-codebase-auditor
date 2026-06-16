@@ -139,4 +139,4 @@ Pairs naturally with live-data SEO tools — use this for the implementation lay
 
 ## License
 
-[MIT](LICENSE) © Revnix
+[MIT](LICENSE)
