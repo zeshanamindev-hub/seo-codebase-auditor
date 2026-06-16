@@ -1,7 +1,7 @@
 {
   "name": "seo-codebase-auditor",
-  "description": "Generate honest codebase-only SEO audit reports for Next.js, Shopify, WordPress, and modern web projects.",
-  "version": "0.1.0",
+  "description": "Generate honest codebase-only SEO audit reports for Next.js, Shopify, WordPress, and modern web projects, and export the action plan to a shared Google Sheet tracker.",
+  "version": "0.2.0",
   "license": "MIT",
   "author": {
     "name": "Zeshan Amin"
@@ -16,6 +16,7 @@
     "technical-seo",
     "schema",
     "metadata",
-    "ai-visibility"
+    "ai-visibility",
+    "google-sheets"
   ]
 }

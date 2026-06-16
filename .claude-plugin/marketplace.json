@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Marketplace for the SEO Codebase Auditor plugin.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "seo-codebase-auditor",
       "source": "./",
-      "description": "Generate honest codebase-only SEO audit reports for Next.js, Shopify, WordPress, and modern web projects.",
-      "version": "0.1.0",
+      "description": "Generate honest codebase-only SEO audit reports for Next.js, Shopify, WordPress, and modern web projects, and export the action plan to a shared Google Sheet tracker.",
+      "version": "0.2.0",
       "license": "MIT",
       "author": {
         "name": "Zeshan AMin"
@@ -27,7 +27,8 @@
         "technical-seo",
         "schema",
         "metadata",
-        "ai-visibility"
+        "ai-visibility",
+        "google-sheets"
       ]
     }
   ]

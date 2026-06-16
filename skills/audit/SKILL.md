@@ -392,6 +392,9 @@ Machine-readable evidence so the audit is reproducible. Suggested shape:
   "categories": {
     "technicalSeo": { "score": 0, "grade": "F", "confidence": "High", "status": "Warn", "evidence": [{ "file": "", "note": "" }] }
   },
+  "actionPlan": [
+    { "id": "T1", "bucket": "High", "priority": 8, "task": "", "category": "Technical SEO", "impact": 5, "effort": 2, "confidence": 5, "files": [""], "severity": "Critical" }
+  ],
   "notAvailableFromCodebase": [
     "Organic traffic", "Keyword rankings", "Backlinks", "Domain authority",
     "AI citation counts", "Google Search Console data", "GA4 data", "Real SERP performance"
@@ -401,6 +404,8 @@ Machine-readable evidence so the audit is reproducible. Suggested shape:
 ```
 
 Populate `filesReviewed` with paths you actually read, `filesMissing` with expected files that were absent, and one entry per category under `categories`. Always include the `notAvailableFromCodebase` array as an honesty guard.
+
+The `actionPlan` array is the **machine-readable mirror of the action plan tables** — one object per task, with the same `bucket` (High/Medium/Low), `priority` (= `impact + confidence − effort`), `task`, `category`, `impact`, `effort`, `confidence`, `files`, and `severity` values you put in the markdown. Keep it in sync with `reports/codebase-seo-action-plan.md`. The `sheet` skill in this plugin reads this array to build a Google Sheet tracker, so emitting it lets users export the plan with assignees and status without re-parsing markdown.
 
 ---
 
@@ -413,6 +418,7 @@ After writing the files, give a short summary in chat:
 - The top 5 fixes (highest priority-score items).
 - The three report paths.
 - A one-line reminder that this is a codebase-only audit and external SEO metrics were not evaluated.
+- That they can export the action plan to a shared **Google Sheet** tracker (with assignees and status) on demand via the `sheet` skill.
 
 Keep the chat summary concise; the detail lives in the report files.
 

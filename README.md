@@ -15,6 +15,7 @@ It will **never** invent traffic, rankings, backlinks, domain authority, AI cita
 - Audits 13 codebase-verifiable SEO areas and scores each with a transparent, weighted model.
 - Writes three report files into the project so the audit is shareable and reproducible.
 - Produces a prioritized, developer-ready action plan.
+- Exports that action plan to a shared **Google Sheet** tracker (priorities, assignees, status) on demand.
 
 ## What it audits
 
@@ -99,6 +100,47 @@ The audit writes three files into the audited project:
 | `reports/codebase-seo-evidence.json` | Machine-readable evidence: files reviewed, files missing, per-category scores, and an explicit `notAvailableFromCodebase` list |
 
 See [`examples/sample-codebase-audit.md`](examples/sample-codebase-audit.md) for a realistic, filled-in example (fictional Next.js project) and [`templates/codebase-seo-audit-report.md`](templates/codebase-seo-audit-report.md) for the blank report template.
+
+The `codebase-seo-evidence.json` also carries a machine-readable `actionPlan` array (one object per task), which powers the Google Sheet export below.
+
+## Export the action plan to a Google Sheet
+
+After running the audit, you can turn the action plan into a shared, formatted
+**Google Sheet** project tracker — on demand — via the `sheet` skill:
+
+```text
+/seo-codebase-auditor:sheet
+```
+
+or just ask: *"export the SEO action plan to a Google Sheet."* The skill will ask
+for an optional **team roster**, an **assignment mode** (round-robin or leave
+blank), and the **email to share the sheet with**, then create:
+
+- a **Summary** tab — task counts by priority/status/assignee and the category grades, and
+- a **Task Tracker** tab — one row per task with Bucket, Priority, Impact/Effort/Confidence, Files to update, plus **Assignee** and **Status** dropdowns and color-coded priority buckets.
+
+The new spreadsheet's URL is printed and saved to `reports/codebase-seo-sheet-url.txt`.
+
+**Honesty preserved:** tasks and scores come only from the audit; assignees come
+only from the roster you provide (never invented), and the Summary keeps the
+codebase-only disclaimer.
+
+### One-time setup
+
+Sheet creation uses a Google **service account** (headless, no browser). Follow
+[`docs/google-sheets-setup.md`](docs/google-sheets-setup.md) once: enable the
+Google Sheets + Drive APIs, create a service account, download its JSON key, and
+set `SEO_SHEET_SA_KEY` to the key's path. No `npm install` is needed — the
+builder ([`scripts/build-sheet.mjs`](scripts/build-sheet.mjs)) is dependency-free.
+
+No credentials yet? Preview the output with no setup and no network calls:
+
+```bash
+node scripts/build-sheet.mjs --input reports/codebase-seo-evidence.json --dry-run
+```
+
+This writes `reports/codebase-seo-tasks-preview.csv` (importable into any
+spreadsheet) plus the exact API payload it *would* send.
 
 ## Scoring
 

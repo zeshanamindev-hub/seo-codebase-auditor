@@ -1,0 +1,13 @@
+# Local Claude Code project state (auto-generated permissions, etc.)
+.claude/
+
+# Generated audit artifacts — written into the audited project, not this repo
+reports/
+
+# Service-account keys must never be committed
+*.sa.json
+*service-account*.json
+
+# OS / editor / tooling cruft
+.DS_Store
+node_modules/
