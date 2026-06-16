@@ -35,6 +35,15 @@ Confidence ∈ {High, Medium, Low}.
 
 ## 3. Audit results
 
+**How to read this table** — one row per SEO category.
+
+- **Category** — the SEO area being assessed.
+- **Score** — 0–100. Calculated as the **weighted sum of that category's sub-criteria**: each sub-criterion is scored 0–100, then multiplied by its weight (the weights within a category total 100). See the Scoring model in the skill and the Scoring reference at the end. `N/A` means there was not enough codebase evidence to score honestly.
+- **Grade** — letter grade mapped directly from **Score**: A = 90–100, B = 80–89, C = 70–79, D = 60–69, F = 0–59.
+- **Status** — at-a-glance verdict: **Pass** (no significant issues), **Warn** (fixable issues found), **Fail** (serious or crawl-blocking issue), **N/A** (not evaluable from code).
+- **Confidence** — how directly the finding was verified: **High** (read directly in files), **Medium** (inferred from partial evidence), **Low** (weak or ambiguous evidence).
+- **Evidence** — the file path(s) the score traces to. Every score must point to a real file.
+
 | Category | Score | Grade | Status | Confidence | Evidence |
 |---|---:|---|---|---|---|
 | Technical SEO |  |  |  |  |  |
@@ -58,6 +67,15 @@ Confidence ∈ {High, Medium, Low}.
 
 **Issues found**
 
+**How to read this table** — one row per issue. These columns are judgments based on code evidence, not calculated scores. The same columns apply to every *Issues found* table in this report.
+
+- **Issue** — the specific problem found in the code.
+- **Severity** — how damaging it is if left unfixed: **Critical**, **High**, **Medium**, or **Low**.
+- **Status** — current state of the check: **Pass**, **Warn**, **Fail**, or **N/A**.
+- **Evidence file** — the file (and line number where useful) that proves the issue.
+- **Why it matters** — the SEO consequence of the issue.
+- **Recommendation** — the concrete fix to apply.
+
 | Issue | Severity | Status | Evidence file | Why it matters | Recommendation |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
@@ -75,6 +93,8 @@ Confidence ∈ {High, Medium, Low}.
 - **Duplicate/generic metadata risks:** {{...}}
 - **Missing metadata:** {{...}}
 - **Weak placeholder metadata:** {{...}}
+
+*Columns are the same as the **Issues found** table in §4 — see the column guide there.*
 
 | Issue | Severity | Status | Evidence file | Why it matters | Recommendation |
 |---|---|---|---|---|---|
@@ -228,6 +248,15 @@ Confidence ∈ {High, Medium, Low}.
 
 > Priority score = Impact + Confidence − Effort. Impact/Effort/Confidence each 1–5.
 
+**How to read these tables** — one row per task, sorted by descending **Priority**. The same columns apply to the High, Medium, and Low tables below.
+
+- **Priority** — the priority score, **calculated as `Impact + Confidence − Effort`** (possible range −4 to 9). Higher = do it sooner. Bucketing: **≥ 6 → High**, **3–5 → Medium**, **< 3 → Low** — except Critical-severity fixes, which always stay in High regardless of score.
+- **Task** — the concrete action to take.
+- **Impact** — 1–5: how much this improves SEO (5 = biggest improvement). **Added** in the formula.
+- **Effort** — 1–5: how much work it takes (5 = most work). **Subtracted** in the formula, so higher effort lowers priority.
+- **Confidence** — 1–5: how certain we are the fix is needed and correct (5 = certain). **Added** in the formula.
+- **Files to update** — the file(s) the developer should change.
+
 **High priority**
 
 | Priority | Task | Impact | Effort | Confidence | Files to update |
@@ -266,6 +295,8 @@ Confidence ∈ {High, Medium, Low}.
 ---
 
 ### Scoring reference
+
+How each category's numeric **Score** maps to its letter **Grade** (used in the Audit results table):
 
 | Score | Grade |
 |---:|---|

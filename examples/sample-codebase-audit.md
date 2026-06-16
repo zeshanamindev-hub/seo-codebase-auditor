@@ -37,6 +37,15 @@ No traffic, rankings, backlinks, domain authority, or AI-visibility metrics appe
 
 ## 3. Audit results
 
+**How to read this table** — one row per SEO category.
+
+- **Category** — the SEO area being assessed.
+- **Score** — 0–100. Calculated as the **weighted sum of that category's sub-criteria** (each sub-criterion scored 0–100, then multiplied by its weight; the weights within a category total 100). `N/A` = not enough codebase evidence to score.
+- **Grade** — letter grade mapped from **Score**: A 90–100, B 80–89, C 70–79, D 60–69, F 0–59.
+- **Status** — **Pass** (no significant issues), **Warn** (fixable issues), **Fail** (serious/crawl-blocking), **N/A** (not evaluable).
+- **Confidence** — how directly verified: **High** (read in files), **Medium** (inferred from partial evidence), **Low** (weak/ambiguous).
+- **Evidence** — the file path(s) the score traces to.
+
 | Category | Score | Grade | Status | Confidence | Evidence |
 |---|---:|---|---|---|---|
 | Technical SEO | 68 | D | Warn | High | `public/robots.txt`, `app/layout.tsx`, `lib/seo.ts` |
@@ -60,6 +69,15 @@ No traffic, rankings, backlinks, domain authority, or AI-visibility metrics appe
 - A single root `metadata` template provides title templating via `title.template`.
 
 **Issues found**
+
+**How to read this table** — one row per issue. These columns are judgments based on code evidence, not calculated scores. The same columns apply to every *Issues found* table in this report.
+
+- **Issue** — the specific problem found in the code.
+- **Severity** — how damaging if left unfixed: **Critical**, **High**, **Medium**, **Low**.
+- **Status** — current state of the check: **Pass**, **Warn**, **Fail**, **N/A**.
+- **Evidence file** — the file (and line where useful) that proves the issue.
+- **Why it matters** — the SEO consequence.
+- **Recommendation** — the concrete fix.
 
 | Issue | Severity | Status | Evidence file | Why it matters | Recommendation |
 |---|---|---|---|---|---|
@@ -205,6 +223,15 @@ No traffic, rankings, backlinks, domain authority, or AI-visibility metrics appe
 
 > Priority score = Impact + Confidence − Effort. Impact/Effort/Confidence each 1–5.
 
+**How to read these tables** — one row per task, sorted by descending **Priority**. The same columns apply to the High, Medium, and Low tables below.
+
+- **Priority** — the priority score, **calculated as `Impact + Confidence − Effort`** (range −4 to 9). Higher = do it sooner. Bucketing: **≥ 6 → High**, **3–5 → Medium**, **< 3 → Low** (Critical-severity fixes always stay in High). Example: the first row below is `5 + 5 − 2 = 8`.
+- **Task** — the concrete action to take.
+- **Impact** — 1–5: SEO upside (5 = biggest). **Added** in the formula.
+- **Effort** — 1–5: work required (5 = most). **Subtracted**, so higher effort lowers priority.
+- **Confidence** — 1–5: certainty the fix is needed/correct (5 = certain). **Added**.
+- **Files to update** — the file(s) to change.
+
 **High priority**
 
 | Priority | Task | Impact | Effort | Confidence | Files to update |
@@ -256,6 +283,8 @@ No traffic, rankings, backlinks, domain authority, or AI-visibility metrics appe
 ---
 
 ### Scoring reference
+
+How each category's numeric **Score** maps to its letter **Grade** (used in the Audit results table):
 
 | Score | Grade |
 |---:|---|

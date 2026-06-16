@@ -302,6 +302,8 @@ The summary "Audit results" table also reports **Metadata**, **Schema**, **Sitem
 
 Create the `reports/` directory inside the audited project and write **three** files. Use the report template at `templates/codebase-seo-audit-report.md` (in this plugin) as the structure for the main report.
 
+**Column guides are required.** The template places a short "How to read this table" block above every table that explains each column and how each number (Score, Grade, Priority) is calculated. Reproduce these guides above the matching table in the generated report — they are part of the deliverable, not template scaffolding, so never strip them. If you add an *Issues found* table in a section that doesn't have one in the template, copy the Issues-table column guide above it too.
+
 ### 1. `reports/codebase-seo-audit.md`
 
 Full report with these sections, in order:
@@ -311,7 +313,9 @@ Full report with these sections, in order:
    > This audit is based only on codebase evidence. It does not include live traffic, keyword rankings, backlinks, real SERP performance, GA4, or Google Search Console data.
 
 2. **Executive summary** — overall codebase SEO health, top strengths, top risks, top 5 fixes.
-3. **Audit results** — the results table:
+3. **Audit results** — the results table, preceded by its column guide:
+
+   > **How to read this table** — one row per SEO category. **Score** is 0–100, the weighted sum of the category's sub-criteria (each sub-criterion 0–100 × its weight; weights total 100 per category). **Grade** maps from Score (A 90–100, B 80–89, C 70–79, D 60–69, F 0–59). **Status** = Pass / Warn / Fail / N/A. **Confidence** = High / Medium / Low (how directly it was verified). **Evidence** = the file path(s) the score traces to.
 
    | Category | Score | Grade | Status | Confidence | Evidence |
    |---|---:|---|---|---|---|
@@ -329,7 +333,9 @@ Full report with these sections, in order:
    | Content structure |  |  |  |  |  |
    | AI visibility readiness |  |  |  |  |  |
 
-4. **Technical SEO** — What is working / Issues found / Recommendations + issues table:
+4. **Technical SEO** — What is working / Issues found / Recommendations + issues table. Precede the table with its column guide (reuse it above every issues table in the report):
+
+   > **How to read this table** — one row per issue; these are judgments from code evidence, not scores. **Issue** = the problem found. **Severity** = Critical / High / Medium / Low. **Status** = Pass / Warn / Fail / N/A. **Evidence file** = the file (and line) that proves it. **Why it matters** = the SEO consequence. **Recommendation** = the concrete fix.
 
    | Issue | Severity | Status | Evidence file | Why it matters | Recommendation |
    |---|---|---|---|---|---|
@@ -353,7 +359,9 @@ Use the issues table everywhere issues are listed. `Severity` ∈ {Critical, Hig
 
 ### 2. `reports/codebase-seo-action-plan.md`
 
-A focused, prioritized plan. Group tasks into **High priority**, **Medium priority**, **Low priority** using this table:
+A focused, prioritized plan. Begin the tables with the column guide below, then group tasks into **High priority**, **Medium priority**, **Low priority** using this table:
+
+> **How to read this table** — one row per task, sorted by descending **Priority**. **Priority** is calculated as `Impact + Confidence − Effort` (range −4 to 9); higher = do sooner. **Task** = the action. **Impact** = 1–5 SEO upside (added). **Effort** = 1–5 work required (subtracted, so more effort lowers priority). **Confidence** = 1–5 certainty the fix is needed/correct (added). **Files to update** = the file(s) to change. Bucketing: ≥ 6 → High, 3–5 → Medium, < 3 → Low (Critical-severity fixes always go in High).
 
 | Priority | Task | Impact | Effort | Confidence | Files to update |
 |---|---|---:|---:|---:|---|
