@@ -35,7 +35,7 @@ It will **never** invent traffic, rankings, backlinks, domain authority, AI cita
 
 ## What it does NOT audit
 
-This is a **static, codebase-only** tool. It has no crawler, browser, or API access. It does **not** measure or estimate:
+This is a **static, codebase-only** tool. It has no crawler or browser, and the audit uses no APIs (only the optional sheet export talks to Google). It does **not** measure or estimate:
 
 - Organic traffic, sessions, pageviews
 - Keyword rankings, impressions, clicks, CTR
@@ -165,9 +165,11 @@ This plugin is built around one rule: **if it isn't in the code, it isn't in the
 - Unverifiable metrics are labeled **“Not available from codebase,”** never guessed.
 - `N/A` is a valid, honest result — scores are not padded to look complete.
 - Confidence ratings keep speculative findings clearly marked.
-- No external APIs, no network calls, no analytics integrations.
+- The **audit** (`/seo-codebase-auditor:audit`) makes no network calls. It only reads files in your repo and writes reports to `reports/`.
+- The **optional sheet export** (`/seo-codebase-auditor:sheet`) is the only network feature. When you run it, it sends the action plan, category scores, the team-member names you provide, and the email you choose to share with, to the Google Sheets API (`sheets.googleapis.com`) and Google Drive API (`www.googleapis.com/drive`), using **your own** Google service account. Use `--dry-run` to preview without any network calls.
 
 This makes the audit reproducible, reviewable, and safe to share with clients or teammates without overclaiming.
+
 
 ## Community / marketplace positioning
 
@@ -178,6 +180,15 @@ This makes the audit reproducible, reviewable, and safe to share with clients or
 - **For teams:** a repeatable pre-launch SEO checklist that lives next to the code.
 
 Pairs naturally with live-data SEO tools — use this for the implementation layer, and your analytics/Search Console stack for performance.
+
+## Privacy
+
+- This plugin has no backend. The author receives and retains **no** data.
+- The audit reads only your local repository and writes reports into it.
+- The optional Google Sheet export sends the action plan, team-member names you enter, and a share email to Google Sheets/Drive under your own service account. That sheet lives in your Google Drive and is kept until you delete it; Google's privacy policy applies: https://policies.google.com/privacy
+- No analytics, telemetry, or tracking.
+
+## License
 
 ## License
 
